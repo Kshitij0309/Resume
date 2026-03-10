@@ -26,10 +26,10 @@ const QuickScanPanel = () => {
                         initial={{ opacity: 0, scale: 0.8, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.8, y: 20 }}
-                        className="w-[280px] md:w-[200px] bg-zinc-950 md:bg-black/80 md:backdrop-blur-md border border-accent-red/40 rounded-[15px] p-5 shadow-[0_0_30px_rgba(229,9,20,0.2)]"
+                        className="w-[280px] md:w-[200px] bg-zinc-950 md:bg-black/90 md:backdrop-blur-md border border-accent-red/20 rounded-[15px] p-5 elevated-content"
                     >
-                        <div className="flex justify-between items-center mb-4">
-                            <h4 className="text-[11px] text-accent-red font-bold tracking-[2px] neon-text uppercase">
+                        <div className="flex justify-between items-center mb-4 border-b border-accent-red/10 pb-2">
+                            <h4 className="text-[10px] text-accent-red/80 font-bold tracking-[2px] title-font uppercase">
                                 RECRUITER MODE
                             </h4>
                             <button onClick={() => setIsExpanded(false)} className="text-white/40 hover:text-white transition-colors">

@@ -28,17 +28,17 @@ const ProjectCard = ({ project, index }) => (
         initial={{ y: 50, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ delay: index * 0.2 }}
-        whileHover={{ y: -10, scale: 1.02 }}
-        className="bg-zinc-900/90 md:bg-zinc-900/60 md:backdrop-blur-md border border-accent-red/20 p-6 md:p-8 rounded-xl group hover:border-accent-red transition-all duration-300 relative overflow-hidden"
+        whileHover={{ y: -12, scale: 1.03 }}
+        className="elevated-content bg-zinc-900/90 md:bg-zinc-900/70 md:backdrop-blur-md border border-accent-red/10 p-6 md:p-8 rounded-xl group hover:border-accent-red transition-all duration-500 relative overflow-hidden"
     >
         {/* Background Glow */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-accent-red/5 blur-2xl rounded-full group-hover:bg-accent-red/10 transition-all" />
+        <div className="absolute top-0 right-0 w-32 h-32 bg-accent-red/5 blur-3xl rounded-full group-hover:bg-accent-red/10 transition-all duration-700" />
 
-        <div className="text-accent-red mb-6 bg-accent-red/10 w-fit p-3 rounded-lg group-hover:bg-accent-red group-hover:text-white transition-all">
+        <div className="text-accent-red/60 mb-6 bg-accent-red/5 w-fit p-3 rounded-lg group-hover:bg-accent-red group-hover:text-white group-hover:glow-strong transition-all duration-500">
             {project.icon}
         </div>
 
-        <h3 className="text-2xl font-bold title-font text-white mb-4 group-hover:text-accent-red transition-colors">
+        <h3 className="text-2xl font-bold title-font text-white/90 mb-4 group-hover:text-white group-hover:neon-text transition-colors">
             {project.title}
         </h3>
 

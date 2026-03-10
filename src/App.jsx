@@ -31,8 +31,9 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#050505]">
-      {/* Cinematic Overlays */}
+    <div className="relative min-h-screen bg-[#050505] selection:bg-accent-red selection:text-white">
+      {/* Cinematic Layer 1: Background Atmosphere */}
+      <div className="fixed inset-0 z-0 pointer-events-none ambient-glow opacity-50" />
       <FogParticles />
       <div className="noise-overlay" />
 

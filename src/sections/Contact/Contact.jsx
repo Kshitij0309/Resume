@@ -59,11 +59,13 @@ const ContactButton = ({ icon, label, href }) => (
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className="flex items-center gap-4 px-8 py-4 bg-zinc-900 border border-white/10 rounded-full text-white title-font tracking-widest hover:border-accent-red hover:shadow-neon transition-all"
+        whileHover={{ scale: 1.1, translateY: -5 }}
+        whileTap={{ scale: 0.95 }}
+        className="flex items-center gap-4 px-8 py-4 bg-zinc-900/90 border border-white/10 rounded-full text-white/70 title-font tracking-widest hover:border-accent-red hover:text-white hover:neon-text elevated-content group transition-all"
     >
-        {icon}
+        <div className="group-hover:glow-strong transition-all duration-500">
+            {icon}
+        </div>
         <span>{label}</span>
     </motion.a>
 );
