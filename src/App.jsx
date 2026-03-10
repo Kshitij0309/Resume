@@ -8,43 +8,9 @@ import Skills from './sections/Skills/Skills';
 import Contact from './sections/Contact/Contact';
 import AlphabetWall from './components/AlphabetWall/AlphabetWall';
 import FogParticles from './components/FogParticles/FogParticles';
-import UpsideDownOverlay from './components/UpsideDownOverlay/UpsideDownOverlay';
-import DimensionalMap from './components/DimensionalMap/DimensionalMap';
-import AITransmission from './components/AITransmission/AITransmission';
-import QuickScanPanel from './components/QuickScanPanel';
-import { motion, AnimatePresence } from 'framer-motion';
-
 function App() {
-  const { currentSection, setCurrentSection, isUpsideDown, setIsUpsideDown, toggleUpsideDown } = useAppState();
+  const { currentSection, setCurrentSection } = useAppState();
   const [showGlitch, setShowGlitch] = useState(false);
-
-  // Scroll logic for Upside Down trigger
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight;
-      const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);
-      const clientHeight = window.innerHeight;
-
-      if (scrollTop + clientHeight >= scrollHeight - 30) {
-        if (!isUpsideDown) {
-          triggerGlitch();
-          setIsUpsideDown(true);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isUpsideDown, setIsUpsideDown]);
-
-  // Sync body class for global CSS effects
-  useEffect(() => {
-    if (isUpsideDown) {
-      document.body.classList.add('upside-down');
-    } else {
-      document.body.classList.remove('upside-down');
-    }
-  }, [isUpsideDown]);
 
   const triggerGlitch = () => {
     setShowGlitch(true);
@@ -65,39 +31,11 @@ function App() {
   };
 
   return (
-    <div className={`relative min-h-screen transition-all duration-1000 ${isUpsideDown
-      ? 'bg-[#050000]'
-      : 'bg-[#050505]'
-      }`}>
+    <div className="relative min-h-screen bg-[#050505]">
       {/* Cinematic Overlays */}
-      <FogParticles isUpsideDown={isUpsideDown} />
+      <FogParticles />
       <div className="noise-overlay" />
 
-      {/* Global Red Filter Overlay (Higher Z-index than content) */}
-      <AnimatePresence>
-        {isUpsideDown && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.3 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[35] pointer-events-none bg-[#330000] md:mix-blend-color transition-colors"
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Vignette Effect (Upside Down specific) */}
-      <AnimatePresence>
-        {isUpsideDown && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[40] pointer-events-none md:shadow-[inset_0_0_200px_rgba(0,0,0,1)] bg-gradient-to-b from-black/40 via-transparent to-black/40 md:bg-transparent"
-          />
-        )}
-      </AnimatePresence>
-
-      <UpsideDownOverlay />
       <DimensionalMap />
       <AITransmission />
       <QuickScanPanel />
@@ -113,26 +51,6 @@ function App() {
           />
         )}
       </AnimatePresence>
-
-      {/* Mysterious Rift Toggle (Always Available) */}
-      <button
-        onClick={() => {
-          triggerGlitch();
-          setIsUpsideDown(!isUpsideDown);
-        }}
-        className="fixed top-6 right-6 z-[999] p-3 rounded-full border border-accent-red/20 text-accent-red/40 hover:text-accent-red hover:border-accent-red transition-all group overflow-hidden"
-        title="Open Dimension"
-      >
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
-          transition={{ duration: 4, repeat: Infinity }}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glitch-svg">
-            <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93" />
-          </svg>
-        </motion.div>
-        <div className="absolute inset-0 bg-accent-red/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-      </button>
 
       <main className="relative z-10 w-full">
         <AnimatePresence mode="wait">

@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import Particles from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
-const FogParticles = ({ isUpsideDown }) => {
+const FogParticles = () => {
     const particlesInit = useCallback(async (engine) => {
         await loadSlim(engine);
     }, []);
@@ -13,11 +13,11 @@ const FogParticles = ({ isUpsideDown }) => {
         fullScreen: { enable: true, zIndex: 1 },
         particles: {
             number: {
-                value: isMobile ? (isUpsideDown ? 40 : 20) : (isUpsideDown ? 100 : 50),
+                value: isMobile ? 20 : 50,
                 density: { enable: true, area: 800 },
             },
             color: {
-                value: isUpsideDown ? "#ff0000" : "#888888",
+                value: "#888888",
             },
             shape: {
                 type: "circle",
@@ -35,7 +35,7 @@ const FogParticles = ({ isUpsideDown }) => {
             },
             move: {
                 enable: true,
-                speed: isUpsideDown ? 1.5 : 0.8,
+                speed: 0.8,
                 direction: "random",
                 random: true,
                 straight: false,
