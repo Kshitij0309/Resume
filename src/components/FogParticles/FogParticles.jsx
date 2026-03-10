@@ -7,11 +7,13 @@ const FogParticles = ({ isUpsideDown }) => {
         await loadSlim(engine);
     }, []);
 
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
     const options = {
         fullScreen: { enable: true, zIndex: 1 },
         particles: {
             number: {
-                value: isUpsideDown ? 100 : 50,
+                value: isMobile ? (isUpsideDown ? 40 : 20) : (isUpsideDown ? 100 : 50),
                 density: { enable: true, area: 800 },
             },
             color: {
@@ -23,17 +25,17 @@ const FogParticles = ({ isUpsideDown }) => {
             opacity: {
                 value: { min: 0.1, max: 0.3 },
                 animation: {
-                    enable: true,
+                    enable: !isMobile, // Disable opacity pulses on mobile
                     speed: 1,
                     sync: false,
                 },
             },
             size: {
-                value: { min: 1, max: 5 },
+                value: { min: 1, max: isMobile ? 3 : 5 },
             },
             move: {
                 enable: true,
-                speed: isUpsideDown ? 2 : 1,
+                speed: isUpsideDown ? 1.5 : 0.8,
                 direction: "random",
                 random: true,
                 straight: false,
@@ -45,7 +47,7 @@ const FogParticles = ({ isUpsideDown }) => {
         interactivity: {
             events: {
                 onHover: {
-                    enable: true,
+                    enable: !isMobile, // Disable hover effects on mobile
                     mode: "bubble",
                 },
             },
@@ -58,7 +60,7 @@ const FogParticles = ({ isUpsideDown }) => {
                 },
             },
         },
-        detectRetina: true,
+        detectRetina: false, // Disabling retina detection on mobile can save performance
     };
 
     return (

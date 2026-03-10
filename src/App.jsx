@@ -78,9 +78,9 @@ function App() {
         {isUpsideDown && (
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
+            animate={{ opacity: 0.3 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[35] pointer-events-none bg-[#330000] mix-blend-color transition-colors"
+            className="fixed inset-0 z-[35] pointer-events-none bg-[#330000] md:mix-blend-color transition-colors"
           />
         )}
       </AnimatePresence>
@@ -92,7 +92,7 @@ function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[40] pointer-events-none shadow-[inset_0_0_200px_rgba(0,0,0,1)]"
+            className="fixed inset-0 z-[40] pointer-events-none md:shadow-[inset_0_0_200px_rgba(0,0,0,1)] bg-gradient-to-b from-black/40 via-transparent to-black/40 md:bg-transparent"
           />
         )}
       </AnimatePresence>

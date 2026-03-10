@@ -46,8 +46,8 @@ const DimensionalMap = () => {
                 exit={{ opacity: 0 }}
                 className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex flex-col"
             >
-                <div className="p-6 flex justify-between items-center z-10">
-                    <h2 className="text-3xl font-bold title-font text-accent-red neon-text">DIMENSIONAL MAP</h2>
+                <div className="p-4 md:p-6 flex justify-between items-center z-10">
+                    <h2 className="text-xl md:text-3xl font-bold title-font text-accent-red neon-text">DIMENSIONAL MAP</h2>
                     <button
                         onClick={() => setIsMapOpen(false)}
                         className="p-2 text-white hover:text-accent-red transition-colors"

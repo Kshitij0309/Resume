@@ -48,7 +48,7 @@ const AITransmission = () => {
         <>
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-6 right-6 z-[80] bg-accent-red text-white p-4 rounded-full shadow-neon hover:scale-110 transition-transform flex items-center gap-2"
+                className="fixed bottom-6 right-4 md:right-6 z-[80] bg-accent-red text-white p-4 rounded-full shadow-neon hover:scale-110 transition-transform flex items-center gap-2"
             >
                 <MessageSquare size={24} />
                 <span className="hidden md:inline font-bold title-font text-xs tracking-widest">TRANSMISSION</span>
@@ -60,7 +60,7 @@ const AITransmission = () => {
                         initial={{ opacity: 0, y: 100, scale: 0.8 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 100, scale: 0.8 }}
-                        className="fixed bottom-24 right-6 z-[80] w-[90vw] md:w-96 h-[500px] bg-black/90 border border-accent-red/50 rounded-lg flex flex-col overflow-hidden backdrop-blur-md"
+                        className="fixed bottom-24 right-4 left-4 md:left-auto md:right-6 z-[80] md:w-96 h-[60vh] md:h-[500px] bg-black/95 md:bg-black/90 border border-accent-red/50 rounded-lg flex flex-col overflow-hidden md:backdrop-blur-md"
                     >
                         <div className="p-4 bg-accent-red/20 border-b border-accent-red/30 flex justify-between items-center">
                             <div className="flex items-center gap-2 text-accent-red">

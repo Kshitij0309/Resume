@@ -30,10 +30,10 @@ const Landing = () => {
             className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4"
         >
             <motion.div variants={itemVariants} className="text-center z-10 mb-20">
-                <h1 className="text-6xl md:text-8xl font-black title-font tracking-tighter text-white mb-4 neon-text">
+                <h1 className="text-4xl sm:text-6xl md:text-8xl font-black title-font tracking-tighter text-white mb-4 neon-text">
                     KSHITIJ MISHRA
                 </h1>
-                <div className="flex flex-col md:flex-row gap-4 items-center justify-center text-text-muted title-font tracking-[0.3em] text-sm md:text-lg">
+                <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-center justify-center text-text-muted title-font tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-lg">
                     <span>ENGINEERING STUDENT</span>
                     <span className="hidden md:inline">•</span>
                     <span>APPLICATION DEVELOPER</span>
@@ -60,19 +60,19 @@ const Landing = () => {
                 OPEN DIMENSIONAL MAP
             </motion.button>
 
-            {/* Background drifting particles (Landing specific) */}
-            <div className="absolute inset-0 pointer-events-none">
-                {[...Array(30)].map((_, i) => (
+            {/* Background drifting particles (Landing specific) - Reduced for performance */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                {[...Array(window.innerWidth < 768 ? 10 : 30)].map((_, i) => (
                     <motion.div
                         key={i}
                         animate={{
-                            y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight],
-                            x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth],
-                            opacity: [0.1, 0.4, 0.1],
-                            scale: [1, 1.5, 1],
+                            y: [Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800), Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800)],
+                            x: [Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200), Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200)],
+                            opacity: [0.05, 0.2, 0.05],
+                            scale: [0.8, 1.2, 0.8],
                         }}
                         transition={{
-                            duration: 10 + Math.random() * 20,
+                            duration: 15 + Math.random() * 25,
                             repeat: Infinity,
                             ease: "linear"
                         }}

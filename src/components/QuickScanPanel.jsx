@@ -7,6 +7,7 @@ const QuickScanPanel = () => {
     const { setCurrentSection } = useAppState();
 
     const links = [
+        { label: 'Gateway', type: 'internal', target: 'landing' },
         { label: 'Projects', type: 'internal', target: 'projects' },
         { label: 'Proof of Work', type: 'internal', target: 'proof_of_work' },
         { label: 'Skills', type: 'internal', target: 'skills' },
@@ -22,8 +23,8 @@ const QuickScanPanel = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="fixed bottom-6 left-6 md:left-6 z-[999] w-[140px] md:w-[180px] 
-                 bg-black/70 backdrop-blur-md border border-accent-red/40 rounded-[10px] 
-                 p-4 shadow-[0_0_15px_rgba(229,9,20,0.3)]
+                 bg-zinc-950 md:bg-black/70 md:backdrop-blur-md border border-accent-red/40 rounded-[10px] 
+                 p-4 md:shadow-[0_0_15px_rgba(229,9,20,0.3)]
                  max-md:left-1/2 max-md:-translate-x-1/2 max-md:bottom-4"
         >
             <div className="mb-3">

@@ -44,10 +44,10 @@ const AlphabetWall = () => {
     };
 
     return (
-        <div className="flex flex-col items-center py-20 px-4 bg-black/40 backdrop-blur-sm rounded-xl border border-accent-red/20 my-10">
+        <div className="flex flex-col items-center py-10 md:py-20 px-4 bg-black/80 md:bg-black/40 md:backdrop-blur-sm rounded-xl border border-accent-red/20 my-10">
             <h3 className="text-2xl title-font text-white mb-10 tracking-widest text-center">LIGHT COMMUNICATION</h3>
 
-            <div className="grid grid-cols-7 gap-4 md:gap-8 mb-12 max-w-4xl mx-auto">
+            <div className="grid grid-cols-4 sm:grid-cols-7 gap-4 md:gap-8 mb-12 max-w-4xl mx-auto">
                 {ALPHABET.map((letter) => (
                     <div key={letter} className="flex flex-col items-center">
                         <motion.div
