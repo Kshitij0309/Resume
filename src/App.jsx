@@ -14,6 +14,7 @@ import QuickScanPanel from './components/QuickScanPanel';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
+
   const { currentSection, setCurrentSection } = useAppState();
   const [showGlitch, setShowGlitch] = useState(false);
 
@@ -21,6 +22,46 @@ function App() {
     setShowGlitch(true);
     setTimeout(() => setShowGlitch(false), 800);
   };
+
+  // -------------------------------
+  // Sync section with browser URL
+  // -------------------------------
+  useEffect(() => {
+    const path = currentSection === "landing" ? "/" : "/" + currentSection;
+    window.history.pushState({ section: currentSection }, "", path);
+  }, [currentSection]);
+
+  // -------------------------------
+  // Handle browser back / forward
+  // -------------------------------
+  useEffect(() => {
+
+    const handlePopState = (event) => {
+      const section = event.state?.section || "landing";
+      setCurrentSection(section);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+
+  }, [setCurrentSection]);
+
+  // -------------------------------
+  // Load section from URL on start
+  // -------------------------------
+  useEffect(() => {
+
+    const path = window.location.pathname.replace("/", "");
+
+    if (path) {
+      setCurrentSection(path);
+    }
+
+  }, [setCurrentSection]);
+
 
   // Section render logic
   const renderSection = () => {
@@ -37,6 +78,7 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-[#050505] selection:bg-accent-red selection:text-white">
+
       {/* Cinematic Layer 1: Background Atmosphere */}
       <div className="fixed inset-0 z-0 pointer-events-none ambient-glow opacity-50" />
       <FogParticles />
@@ -59,6 +101,7 @@ function App() {
       </AnimatePresence>
 
       <main className="relative z-10 w-full">
+
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSection}
@@ -67,23 +110,30 @@ function App() {
             exit={{ opacity: 0, scale: 0.9, filter: 'blur(20px)' }}
             transition={{ duration: 0.8 }}
           >
+
             {renderSection()}
 
             {/* Common components across sections (except landing) */}
             {currentSection !== 'landing' && (
               <div className="flex flex-col items-center pb-20">
+
                 <AlphabetWall />
+
                 <button
                   onClick={() => setCurrentSection('landing')}
                   className="mt-10 px-6 py-2 border border-white/20 text-white/50 hover:text-white transition-colors title-font text-xs tracking-widest"
                 >
                   RETURN TO GATEWAY
                 </button>
+
               </div>
             )}
+
           </motion.div>
         </AnimatePresence>
+
       </main>
+
     </div>
   );
 }
