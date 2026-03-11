@@ -23,17 +23,26 @@ function App() {
     setTimeout(() => setShowGlitch(false), 800);
   };
 
-  // -------------------------------
+  // ---------------------------------
+  // Initialize browser history entry
+  // ---------------------------------
+  useEffect(() => {
+    if (!window.history.state) {
+      window.history.replaceState({ section: "landing" }, "", "/");
+    }
+  }, []);
+
+  // ---------------------------------
   // Sync section with browser URL
-  // -------------------------------
+  // ---------------------------------
   useEffect(() => {
     const path = currentSection === "landing" ? "/" : "/" + currentSection;
     window.history.pushState({ section: currentSection }, "", path);
   }, [currentSection]);
 
-  // -------------------------------
+  // ---------------------------------
   // Handle browser back / forward
-  // -------------------------------
+  // ---------------------------------
   useEffect(() => {
 
     const handlePopState = (event) => {
@@ -49,9 +58,9 @@ function App() {
 
   }, [setCurrentSection]);
 
-  // -------------------------------
-  // Load section from URL on start
-  // -------------------------------
+  // ---------------------------------
+  // Load correct section from URL
+  // ---------------------------------
   useEffect(() => {
 
     const path = window.location.pathname.replace("/", "");
