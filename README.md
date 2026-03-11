@@ -6,7 +6,7 @@ A cinematic, highly interactive personal resume website inspired by the dark atm
 
 ## 🎬 Live Experience
 - **Primary Interface**: Dark/Neon Sci-Fi UI
-- **Alternate Dimension**: The Upside Down (Active Mutation)
+
 - **Deployment Hub**: Vercel
 
 ---
@@ -22,16 +22,12 @@ A cosmic node-network navigation system built with `react-force-graph`. It visua
 ### 3. 🔦 Alphabet Light Wall
 An interactive communication grid inspired by the Hawkins light wall. Users can type specific keywords (like "PROJECTS" or "ABOUT") to trigger a letter-by-letter light sequence that navigates the site.
 
-### 4. 🌑 The Upside Down Mode
-A global state mutation triggered by scrolling to the page bottom or toggling the "Mysterious Rift." When active:
-- The UI undergoes a "decayed" color mutation (Hue-rotate/Grayscale).
-- Red drifting spores and organic vine patterns consume the background.
-- Glitch effects and vignetting increase.
 
-### 🤖 AI Transmission Terminal
+
+### 4. 🤖 AI Transmission Terminal
 A floating communication console where visitors can "chat" with the Hawking portal to learn about Kshitij’s tech stack, projects, and contact info.
 
-### 💼 Recruiter Quick Scan Panel
+### 5. 💼 Recruiter Quick Scan Panel
 A persistent, glassmorphism-style panel optimized for recruiters. It provides instant access to the core data (GitHub, Resume, WhatsApp) without breaking the immersion.
 
 ---
@@ -84,7 +80,6 @@ src/
  │  ├ DimensionalMap/      # Cosmic node network
  │  ├ AlphabetWall/        # Light communication grid
  │  ├ FogParticles/        # Atmospheric background
- │  ├ UpsideDownOverlay/   # Dimension mutation effects
  │  ├ AITransmission/      # Chat terminal logic
  │  └ QuickScanPanel/      # Recruiter HUD
  ├ sections/               # Main page contents
