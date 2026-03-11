@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { useAppState } from './context/AppContext';
-import Landing from './sections/Landing/Landing';
-import About from './sections/About/About';
-import Projects from './sections/Projects/Projects';
-import ProofOfWork from './sections/ProofOfWork/ProofOfWork';
-import Skills from './sections/Skills/Skills';
-import Contact from './sections/Contact/Contact';
-import AlphabetWall from './components/AlphabetWall/AlphabetWall';
-import FogParticles from './components/FogParticles/FogParticles';
-import DimensionalMap from './components/DimensionalMap/DimensionalMap';
-import AITransmission from './components/AITransmission/AITransmission';
-import QuickScanPanel from './components/QuickScanPanel';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useState } from "react";
+import { useAppState } from "./context/AppContext";
+
+import Landing from "./sections/Landing/Landing";
+import About from "./sections/About/About";
+import Projects from "./sections/Projects/Projects";
+import ProofOfWork from "./sections/ProofOfWork/ProofOfWork";
+import Skills from "./sections/Skills/Skills";
+import Contact from "./sections/Contact/Contact";
+
+import AlphabetWall from "./components/AlphabetWall/AlphabetWall";
+import FogParticles from "./components/FogParticles/FogParticles";
+import DimensionalMap from "./components/DimensionalMap/DimensionalMap";
+import AITransmission from "./components/AITransmission/AITransmission";
+import QuickScanPanel from "./components/QuickScanPanel";
+
+import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
-
   const { currentSection, setCurrentSection } = useAppState();
   const [showGlitch, setShowGlitch] = useState(false);
 
@@ -23,28 +25,48 @@ function App() {
     setTimeout(() => setShowGlitch(false), 800);
   };
 
-  // ---------------------------------
-  // Initialize browser history entry
-  // ---------------------------------
+  /*
+  ---------------------------------------
+  Initialize history state on first load
+  ---------------------------------------
+  */
   useEffect(() => {
-    if (!window.history.state) {
-      window.history.replaceState({ section: "landing" }, "", "/");
-    }
-  }, []);
+    const path = window.location.pathname.replace("/", "") || "landing";
 
-  // ---------------------------------
-  // Sync section with browser URL
-  // ---------------------------------
+    window.history.replaceState(
+      { section: path },
+      "",
+      path === "landing" ? "/" : "/" + path
+    );
+
+    setCurrentSection(path);
+  }, [setCurrentSection]);
+
+  /*
+  ---------------------------------------
+  Push history entry when section changes
+  ---------------------------------------
+  */
   useEffect(() => {
-    const path = currentSection === "landing" ? "/" : "/" + currentSection;
-    window.history.pushState({ section: currentSection }, "", path);
+    const currentPath = window.location.pathname.replace("/", "") || "landing";
+
+    if (currentPath !== currentSection) {
+      const path = currentSection === "landing" ? "/" : "/" + currentSection;
+
+      window.history.pushState(
+        { section: currentSection },
+        "",
+        path
+      );
+    }
   }, [currentSection]);
 
-  // ---------------------------------
-  // Handle browser back / forward
-  // ---------------------------------
+  /*
+  ---------------------------------------
+  Handle browser back / forward
+  ---------------------------------------
+  */
   useEffect(() => {
-
     const handlePopState = (event) => {
       const section = event.state?.section || "landing";
       setCurrentSection(section);
@@ -55,49 +77,47 @@ function App() {
     return () => {
       window.removeEventListener("popstate", handlePopState);
     };
-
   }, [setCurrentSection]);
 
-  // ---------------------------------
-  // Load correct section from URL
-  // ---------------------------------
-  useEffect(() => {
-
-    const path = window.location.pathname.replace("/", "");
-
-    if (path) {
-      setCurrentSection(path);
-    }
-
-  }, [setCurrentSection]);
-
-
-  // Section render logic
+  /*
+  ---------------------------------------
+  Section rendering
+  ---------------------------------------
+  */
   const renderSection = () => {
     switch (currentSection) {
-      case 'landing': return <Landing />;
-      case 'about': return <About />;
-      case 'projects': return <Projects />;
-      case 'proof_of_work': return <ProofOfWork />;
-      case 'skills': return <Skills />;
-      case 'contact': return <Contact />;
-      default: return <Landing />;
+      case "landing":
+        return <Landing />;
+      case "about":
+        return <About />;
+      case "projects":
+        return <Projects />;
+      case "proof_of_work":
+        return <ProofOfWork />;
+      case "skills":
+        return <Skills />;
+      case "contact":
+        return <Contact />;
+      default:
+        return <Landing />;
     }
   };
 
   return (
     <div className="relative min-h-screen bg-[#050505] selection:bg-accent-red selection:text-white">
 
-      {/* Cinematic Layer 1: Background Atmosphere */}
+      {/* Background Atmosphere */}
       <div className="fixed inset-0 z-0 pointer-events-none ambient-glow opacity-50" />
+
       <FogParticles />
       <div className="noise-overlay" />
 
+      {/* Global Components */}
       <DimensionalMap />
       <AITransmission />
       <QuickScanPanel />
 
-      {/* Glitch Transition Overlay */}
+      {/* Glitch Overlay */}
       <AnimatePresence>
         {showGlitch && (
           <motion.div
@@ -114,22 +134,22 @@ function App() {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSection}
-            initial={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, scale: 0.9, filter: 'blur(20px)' }}
+            initial={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
             transition={{ duration: 0.8 }}
           >
 
             {renderSection()}
 
-            {/* Common components across sections (except landing) */}
-            {currentSection !== 'landing' && (
+            {/* Shared components except landing */}
+            {currentSection !== "landing" && (
               <div className="flex flex-col items-center pb-20">
 
                 <AlphabetWall />
 
                 <button
-                  onClick={() => setCurrentSection('landing')}
+                  onClick={() => setCurrentSection("landing")}
                   className="mt-10 px-6 py-2 border border-white/20 text-white/50 hover:text-white transition-colors title-font text-xs tracking-widest"
                 >
                   RETURN TO GATEWAY
