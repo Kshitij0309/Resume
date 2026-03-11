@@ -8,6 +8,11 @@ import Skills from './sections/Skills/Skills';
 import Contact from './sections/Contact/Contact';
 import AlphabetWall from './components/AlphabetWall/AlphabetWall';
 import FogParticles from './components/FogParticles/FogParticles';
+import DimensionalMap from './components/DimensionalMap/DimensionalMap';
+import AITransmission from './components/AITransmission/AITransmission';
+import QuickScanPanel from './components/QuickScanPanel';
+import { motion, AnimatePresence } from 'framer-motion';
+
 function App() {
   const { currentSection, setCurrentSection } = useAppState();
   const [showGlitch, setShowGlitch] = useState(false);

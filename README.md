@@ -101,15 +101,7 @@ src/
 
 ---
 
-## 🌎 Deployment
 
-### Deploying to Vercel
-This project is optimized for [Vercel](https://vercel.com/).
-
-1. Push your code to GitHub.
-2. Connect your GitHub account to Vercel.
-3. Import the repository and click **Deploy**.
-4. Vercel will automatically detect the Vite environment and handle the build.
 
 ---
 
